@@ -119,7 +119,7 @@ Like the Mathematica example, this uses built-in parallelism in the
 linear algebra libraries that Julia uses.
 
 * [julia-manythreads.sbatch -- Slurm batch script](examples/julia-manythreads.sbatch)
-* [julia-manythreads.m -- C source code](examples/julia-manythreads.m)
+* [julia-manythreads.jl -- Julia source code](examples/julia-manythreads.jl)
 * [julia-manythreads.out -- example output](examples/julia-manythreads.out)
 
 To run the example:
@@ -128,7 +128,60 @@ To run the example:
 sbatch julia-manythreads.sbatch
 ```
 
-### Hybrid OpenMP + MPI
+### Julia -- on many nodes
+
+This runs 40 copies of a Julia program on each of the 4 nodes
+requested.  In a real program, they would need some way of splitting
+up a large task.
+
+* [julia-manytasks.sbatch -- Slurm batch script](examples/julia-manytasks.sbatch)
+* [julia-manytasks.m -- Julia source code](examples/julia-manytasks.jl)
+* [julia-manytasks.out -- example output](examples/julia-manytasks.out)
+
+To run the example:
+
+```
+sbatch julia-manytasks.sbatch
+```
+
+### C: single-node OpenMP
+
+* [hello-openmp.build -- build script](examples/hello-openmp.build)
+* [hello-openmp.c -- C source code](examples/hello-openmp.c)
+* [hello-openmp.sbatch -- Slurm batch script](examples/hello-openmp.sbatch)
+* [hello-openmp.out -- example output](examples/hello-openmp.out)
+
+This example is written in C and uses OpenMP to parallelize within a
+compute node.
+
+To run the example:
+
+```
+. hello-openmp.build
+```
+
+This will compile the program and submit it to the batch system.  The output will appear in the file `hello-openmp.out`.
+
+
+### C: multi-node MPI
+
+* [hello-mpi.build -- build script](examples/hello-mpi.build)
+* [hello-mpi.c -- C source code](examples/hello-mpi.c)
+* [hello-mpi.sbatch -- Slurm batch script](examples/hello-mpi.sbatch)
+* [hello-mpi.out -- example output](examples/hello-mpi.out)
+
+This example is written in C and uses MPI to parallelize across 4 nodes.
+
+To run the example:
+
+```
+. hello-mpi.build
+```
+
+This will compile the program and submit it to the batch system.  The output will appear in the file `hello-mpi.out`.
+
+
+### C: Hybrid OpenMP + MPI
 
 * [hello-hybrid.build -- build script](examples/hello-hybrid.build)
 * [hello-hybrid.c -- C source code](examples/hello-hybrid.c)
