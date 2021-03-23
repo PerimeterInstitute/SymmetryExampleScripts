@@ -4,43 +4,104 @@ Example scripts for submitting compute jobs to Perimeter's Symmetry high-perform
 *Symmetry* is Perimeter Institute's in-house computing cluster or
  "high-performance computer" (HPC).
 
-We use the *Slurm* system to process *batch jobs*.  This is the main
-way users run large (multi-node) compute jobs on Symmetry.
+Symmetries are important in physics. [Noether's
+theorem](https://en.wikipedia.org/wiki/Noether%27s_theorem) states
+that every local symmetry of a physical system generates a
+conservation law.  Our cluster is named in honour of this principle.
 
-Symmetry currently (as of March 2021) has 76 regular compute nodes and
-2 GPU nodes.
+Symmetry is intended to serve the needs of Perimeter researchers,
+filling a gap between personal devices such as laptops and desktops,
+and large national sytems offered e.g. by [Compute
+Canada](https://www.computecanada.ca). As such, each node of Symmetry
+is significantly more powerful than a laptop, but cannot compete with
+a national system such as
+[Graham](https://docs.computecanada.ca/wiki/Graham) or
+[Niagara](https://docs.computecanada.ca/wiki/Niagara).
 
-To use Slurm, you write a "batch script" that describes how many nodes
-you want, for how long, which queue it should wait in, and a script of
-what you want to run.  You submit this script to the batch system
-using the `sbatch` command, and your job gets assigned a job ID and
-then goes into a queue.  We have a few different queues to support
-different kinds of computer use.  Once your job gets to the front of
-the queue, it will get sent to one or more of the compute nodes and
-run there.  Any output your job prints will get written to a file
-named (by default) `slurm-<JOBID>.out` in the directory you were in
-when you submitted the job.
+## Contact and help
+
+As usual for all technical systems at Perimeter, the main channel to
+report issues and ask for assistance is our [help
+desk](mailto:help@perimeterinstitute.ca).
+
+
+## Running jobs
+
+While you can run jobs interactively on the head nodes, you need to be
+careful when doing so: Head nodes are shared between all users on
+Symmetry. **Do this only for tasks that do not need many resources.**
+For example, compiling code, or brief tests of a Julia or Mathematica
+notebook are probably fine. If in doubt, use a compute node instead.
+
+We use the [Slurm](https://slurm.schedmd.com) resource manager (aka
+"scheduler" or "queueing system") to run *batch jobs*. Slurm keeps
+track of which compute nodes are currently used by who. If you want to
+use a certain number of compute nodes, you have to ask Slurm, and you
+might have to wait until the nodes are available before you can run
+your job.
+
+The basic work flow is thus as follows:
+
+1. You write a *batch script* (shell script) for your job. (Below are
+   some examples.) This script defines which resources you want (e.g.
+   "4 nodes for 7 days"), and also how to run your job.
+
+1. You submit this script to Slurm via `sbatch` (see below for
+   examples).  We have a few different queues to support
+   different kinds of computer use.
+
+1. If the system is busy, your job might have to wait in the queue for
+   some time. Slurm will try to be "fair" to all users (whatever that
+   means). Your job's priority is determined by several factors,
+   including how much you have used Symmetry recently, and how many
+   resources your job requests.
+
+1. Slurm will run your job automatically (that's what *batch* means).
+   This does generally not work with notebooks (e.g. Mathematica,
+   Jupyter). Instead, you need to write a script with a text editor
+   (see below for examples).
+
+1. After the job has finished, you examine its output that was
+   presumably written to a file.
+
 
 ## Parallel computing
 
-There are three main ways that people do parallel computing to make
-good use of the powerful nodes that Symmetry offers.  Programs such as
-Mathematica, and libraries such as Python's NumPy, may use some of
-these approaches, so that as a user you don't need to do anything
-special to get a speed-up from using a Symmetry compute node.  These
-methods are:
+When running a job on Symmetry, you need to describe how many *nodes*
+and *cores* your job is requesting. Determining this correctly is not
+always straightforward:
 
-* multi-processing.  The program starts up multiple copies of itself,
- and splits the work among the copies.  This only works within a node.
+- First, you need to know whether your application can run across
+  multiple nodes. Many applications cannot, because it is difficult to
+  implement this. Usually you will know whether your application
+  supports this. For exampe, in Mathematica you need to use *remote
+  kernels* to enable this. In Fortran, C, or C++, you need to use
+  `MPI` or a similar mechanism. In Julia or Python programs, you also
+  need to explicitly support using multiple processes.
 
-* OpenMP.  This is an extension to programming languages such as C++
-  that allow programmers to tell the compiler about available
-  parallelism in the program.  This only works within a node.
+- You also need to know whether your application uses multiple
+  threads. Even if your application does not support this explicitly,
+  it might use a library that uses multi-threading. For example,
+  Mathematica, Julia, or Python are not multi-threaded by default, but
+  if you use linear algebra (e.g. systems with large matrices for
+  floating-point numbers), then they might use multiple threads. In
+  Fortran, C, or C++, you can use OpenMP for multi-threading. (Note
+  that `OpenMP` and `MPI`/`OpenMPI` are very different, despite the
+  very similar names.)
 
-* MPI.  This is the main way that multi-node parallel computing is
-  achieved.  MPI provides a message-passing library that allows
-  different copies of the program (running within or across nodes) to
-  talk to each other.
+- If your application uses multiple nodes, then it most likely will
+  use all the cores on each node efficiently. This gives the highest
+  performance, but is the most difficult to implement.
+
+- If your application use a single node but is multi-threaded, then
+  you should probably run only a single program on each compute node.
+  This is the easiest case.
+
+- If your application is not multi-threaded, then it iuses only a
+  single core. Each node of Symmetry has many cores (up to 40). It
+  thus makes sense to run multiple copies of your application at the
+  same time on the same node, if there is enough memory available.
+
 
 ## Queue details
 
@@ -72,15 +133,23 @@ allows access to those reservations.
 The way we have set up Slurm, most of the time we allocate full
 compute nodes to a job (users do not share nodes).
 
-The regular compute nodes have 2 CPUs, each with 20 cores, and
-supporting 2 "hyper-threads".  Slurm counts hyper-threads as "cpus",
-so as far as it is concerned, the compute nodes have 80 "cpus".  The
-regular compute nodes have 192 GB of memory.
+Symmetry currently (as of March 2021) has 76 regular compute nodes and
+2 GPU nodes.
+
+The regular compute nodes have 2 Intel Xeon Gold CPUs, each with 20
+cores, and supporting 2 "hyper-threads".  Slurm counts hyper-threads
+as "cpus", so as far as it is concerned, the compute nodes have 80
+"cpus".  The regular compute nodes have 192 GB of memory.
 
 The GPU nodes have one CPU with 8 cores and 2 hyper-threads, so 16
 "cpus" according to Slurm.  They also have 4 NVIDIA GeForce RTX 2080
 GPUs.  Unlike the regular compute nodes, we *do* allow users to
 request 1 to 4 GPUs; jobs may share these nodes.
+
+We have a local file server hosting a GPFS file system offering 233
+  TeraBytes of space, and a high-performance InfiniBand network
+  connects the nodes and the file server.
+
 
 ## Example scripts.
 
