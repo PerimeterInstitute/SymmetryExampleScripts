@@ -1,7 +1,8 @@
 #!/bin/bash
+#SBATCH --partition debugq
 #SBATCH --job-name=hello-openmp
 #SBATCH --nodes=1
-#SBATCH --output=/home/eschnetter/src/c/hello-openmp.out
+#SBATCH --output=hello-openmp.out
 #SBATCH --time=0:10:00
 
 set -euxo pipefail

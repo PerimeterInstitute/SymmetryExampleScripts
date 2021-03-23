@@ -1,4 +1,4 @@
-module load intel/mpi
+module load mpi
 which mpicc
 mpicc -Wall -c hello-mpi.c
 mpicc -Wall -o hello-mpi hello-mpi.o

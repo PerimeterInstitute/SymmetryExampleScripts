@@ -1,13 +1,15 @@
 #!/bin/bash
+#SBATCH --partition debugq
 #SBATCH --job-name=julia-manytasks
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-core=1
-#SBATCH --output=/home/eschnetter/src/c/julia-manytasks.out
+#SBATCH --output=julia-manytasks.out
 #SBATCH --time=0:10:00
 
 set -euxo pipefail
 
 module load slurm
+module load julia
 
 pwd
 echo "SLURM_JOB_ID=$SLURM_JOB_ID"
