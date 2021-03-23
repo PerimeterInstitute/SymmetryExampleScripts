@@ -84,7 +84,10 @@ request 1 to 4 GPUs; jobs may share these nodes.
 
 ### Hybrid OpenMP + MPI
 
-[hello-hybrid.build -- build script](../blob/main/examples/hello-hybrid.build)
+[hello-hybrid.build -- build script](examples/hello-hybrid.build)
+[hello-hybrid.c -- C source code](examples/hello-hybrid.c)
+[hello-hybrid.sbatch -- Slurm batch script](examples/hello-hybrid.sbatch)
+[hello-hybrid.out -- example output](examples/hello-hybrid.out)
 
 This example is written in C and uses OpenMP within a compute node,
 and MPI to coordinate between multiple compute nodes.
