@@ -1,4 +1,4 @@
-module load intel/mpi
+module load mpi
 which mpicc
 mpicc -fopenmp -Wall -c hello-hybrid.c
 mpicc -fopenmp -Wall -o hello-hybrid hello-hybrid.o
