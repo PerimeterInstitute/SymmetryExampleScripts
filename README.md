@@ -21,6 +21,8 @@ run there.  Any output your job prints will get written to a file
 named (by default) `slurm-<JOBID>.out` in the directory you were in
 when you submitted the job.
 
+## Parallel computing
+
 There are three main ways that people do parallel computing to make
 good use of the powerful nodes that Symmetry offers.  Programs such as
 Mathematica, and libraries such as Python's NumPy, may use some of
@@ -81,6 +83,36 @@ GPUs.  Unlike the regular compute nodes, we *do* allow users to
 request 1 to 4 GPUs; jobs may share these nodes.
 
 ## Example scripts.
+
+### Mathematica -- on one node
+
+This example uses Mathematica's built-in ability to use all the
+available cores in the node when performing certain kinds of
+computations.  Linear algebra usually does the best here, just because
+many people have put in the effort to write code that can split work
+among cores, and the computations are structured enough that this
+works well.
+
+* [mathematica-manythreads.sbatch -- Slurm batch script](examples/mathematica-manythreads.sbatch)
+* [mathematica-manythreads.m -- C source code](examples/mathematica-manythreads.m)
+* [mathematica-manythreads.out -- example output](examples/mathematica-manythreads.out)
+
+To run the example:
+
+```
+sbatch mathematica-manythreads.sbatch
+```
+
+### Mathematica -- many small tasks
+
+This example is for when you have a number of small tasks to perform
+-- for example, you have 100 data files and you need to run a
+mathematica script on each one.
+
+* [mathematica-manytasks.sbatch -- Slurm batch script](examples/mathematica-manytasks.sbatch)
+* [mathematica-onetask.m -- Mathematica script run on each data item](examples/mathematica-onetask.m)
+* [mathematica-manytasks.out -- example output](examples/mathematica-manytasks.out)
+
 
 ### Hybrid OpenMP + MPI
 
