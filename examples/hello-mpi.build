@@ -1,0 +1,5 @@
+module load intel/mpi
+which mpicc
+mpicc -Wall -c hello-mpi.c
+mpicc -Wall -o hello-mpi hello-mpi.o
+sbatch hello-mpi.sbatch

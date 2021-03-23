@@ -1,0 +1,13 @@
++ pwd
+/home/eschnetter/src/c
++ echo SLURM_JOB_ID=2606
+SLURM_JOB_ID=2606
++ date
+Tue Nov 20 16:31:42 EST 2018
++ math -noprompt -script mathematica-manythreads.m
+Multiplying two large matrices...
+Run time in seconds: 14.845
+Theoretical run time in seconds: 5.20833
+Done.
++ date
+Tue Nov 20 16:32:09 EST 2018

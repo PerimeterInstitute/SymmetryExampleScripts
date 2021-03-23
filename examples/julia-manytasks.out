@@ -1,0 +1,181 @@
++ module load slurm
+++ /usr/bin/tclsh /cm/local/apps/environment-modules/4.0.0/libexec/modulecmd.tcl bash load slurm
++ eval
++ pwd
+/nfs/galaxy/unixhome/eschnetter/src/c
++ echo SLURM_JOB_ID=2073
+SLURM_JOB_ID=2073
++ date
+Mon Nov 12 21:13:07 EST 2018
+++ mktemp
++ machinefile=/tmp/tmp.f9FUSxOES0
++ sort
++ seq 40
++ xargs -n 1 -I '{}' scontrol show hostnames
++ julia --machine-file /tmp/tmp.f9FUSxOES0 julia-manytasks.jl
+Using multiple processes in Julia
+nworkers: 160
+hostname: cn003
+      From worker 5:	hostname: cn003
+      From worker 2:	hostname: cn004
+      From worker 3:	hostname: cn005
+      From worker 4:	hostname: cn006
+      From worker 20:	hostname: cn004
+      From worker 17:	hostname: cn004
+      From worker 14:	hostname: cn004
+      From worker 30:	hostname: cn004
+      From worker 32:	hostname: cn004
+      From worker 10:	hostname: cn004
+      From worker 33:	hostname: cn004
+      From worker 31:	hostname: cn004
+      From worker 23:	hostname: cn004
+      From worker 18:	hostname: cn004
+      From worker 27:	hostname: cn004
+      From worker 38:	hostname: cn004
+      From worker 44:	hostname: cn004
+      From worker 35:	hostname: cn004
+      From worker 41:	hostname: cn004
+      From worker 9:	hostname: cn004
+      From worker 12:	hostname: cn004
+      From worker 36:	hostname: cn004
+      From worker 8:	hostname: cn004
+      From worker 37:	hostname: cn004
+      From worker 26:	hostname: cn004
+      From worker 7:	hostname: cn004
+      From worker 13:	hostname: cn004
+      From worker 40:	hostname: cn004
+      From worker 11:	hostname: cn004
+      From worker 29:	hostname: cn004
+      From worker 6:	hostname: cn004
+      From worker 39:	hostname: cn004
+      From worker 21:	hostname: cn004
+      From worker 15:	hostname: cn004
+      From worker 34:	hostname: cn004
+      From worker 16:	hostname: cn004
+      From worker 25:	hostname: cn004
+      From worker 19:	hostname: cn004
+      From worker 43:	hostname: cn004
+      From worker 22:	hostname: cn004
+      From worker 28:	hostname: cn004
+      From worker 42:	hostname: cn004
+      From worker 24:	hostname: cn004
+      From worker 141:	hostname: cn003
+      From worker 154:	hostname: cn003
+      From worker 135:	hostname: cn003
+      From worker 155:	hostname: cn003
+      From worker 145:	hostname: cn003
+      From worker 125:	hostname: cn003
+      From worker 139:	hostname: cn003
+      From worker 130:	hostname: cn003
+      From worker 138:	hostname: cn003
+      From worker 152:	hostname: cn003
+      From worker 153:	hostname: cn003
+      From worker 146:	hostname: cn003
+      From worker 150:	hostname: cn003
+      From worker 158:	hostname: cn003
+      From worker 151:	hostname: cn003
+      From worker 124:	hostname: cn003
+      From worker 129:	hostname: cn003
+      From worker 159:	hostname: cn003
+      From worker 149:	hostname: cn003
+      From worker 140:	hostname: cn003
+      From worker 136:	hostname: cn003
+      From worker 142:	hostname: cn003
+      From worker 148:	hostname: cn003
+      From worker 123:	hostname: cn003
+      From worker 137:	hostname: cn003
+      From worker 131:	hostname: cn003
+      From worker 126:	hostname: cn003
+      From worker 127:	hostname: cn003
+      From worker 132:	hostname: cn003
+      From worker 156:	hostname: cn003
+      From worker 147:	hostname: cn003
+      From worker 134:	hostname: cn003
+      From worker 157:	hostname: cn003
+      From worker 160:	hostname: cn003
+      From worker 143:	hostname: cn003
+      From worker 144:	hostname: cn003
+      From worker 161:	hostname: cn003
+      From worker 128:	hostname: cn003
+      From worker 133:	hostname: cn003
+      From worker 101:	hostname: cn005
+      From worker 99:	hostname: cn005
+      From worker 90:	hostname: cn005
+      From worker 87:	hostname: cn005
+      From worker 94:	hostname: cn005
+      From worker 97:	hostname: cn005
+      From worker 88:	hostname: cn005
+      From worker 93:	hostname: cn005
+      From worker 110:	hostname: cn005
+      From worker 116:	hostname: cn005
+      From worker 115:	hostname: cn005
+      From worker 111:	hostname: cn005
+      From worker 120:	hostname: cn005
+      From worker 106:	hostname: cn005
+      From worker 86:	hostname: cn005
+      From worker 98:	hostname: cn005
+      From worker 108:	hostname: cn005
+      From worker 118:	hostname: cn005
+      From worker 117:	hostname: cn005
+      From worker 107:	hostname: cn005
+      From worker 85:	hostname: cn005
+      From worker 105:	hostname: cn005
+      From worker 89:	hostname: cn005
+      From worker 91:	hostname: cn005
+      From worker 114:	hostname: cn005
+      From worker 103:	hostname: cn005
+      From worker 102:	hostname: cn005
+      From worker 92:	hostname: cn005
+      From worker 119:	hostname: cn005
+      From worker 96:	hostname: cn005
+      From worker 113:	hostname: cn005
+      From worker 112:	hostname: cn005
+      From worker 104:	hostname: cn005
+      From worker 95:	hostname: cn005
+      From worker 84:	hostname: cn005
+      From worker 121:	hostname: cn005
+      From worker 100:	hostname: cn005
+      From worker 122:	hostname: cn005
+      From worker 109:	hostname: cn005
+      From worker 69:	hostname: cn006
+      From worker 74:	hostname: cn006
+      From worker 50:	hostname: cn006
+      From worker 76:	hostname: cn006
+      From worker 71:	hostname: cn006
+      From worker 57:	hostname: cn006
+      From worker 62:	hostname: cn006
+      From worker 48:	hostname: cn006
+      From worker 52:	hostname: cn006
+      From worker 59:	hostname: cn006
+      From worker 70:	hostname: cn006
+      From worker 46:	hostname: cn006
+      From worker 49:	hostname: cn006
+      From worker 54:	hostname: cn006
+      From worker 73:	hostname: cn006
+      From worker 78:	hostname: cn006
+      From worker 56:	hostname: cn006
+      From worker 61:	hostname: cn006
+      From worker 63:	hostname: cn006
+      From worker 67:	hostname: cn006
+      From worker 51:	hostname: cn006
+      From worker 75:	hostname: cn006
+      From worker 60:	hostname: cn006
+      From worker 47:	hostname: cn006
+      From worker 66:	hostname: cn006
+      From worker 83:	hostname: cn006
+      From worker 77:	hostname: cn006
+      From worker 64:	hostname: cn006
+      From worker 68:	hostname: cn006
+      From worker 53:	hostname: cn006
+      From worker 79:	hostname: cn006
+      From worker 45:	hostname: cn006
+      From worker 65:	hostname: cn006
+      From worker 55:	hostname: cn006
+      From worker 58:	hostname: cn006
+      From worker 72:	hostname: cn006
+      From worker 81:	hostname: cn006
+      From worker 82:	hostname: cn006
+      From worker 80:	hostname: cn006
+Done.
++ date
+Mon Nov 12 21:13:14 EST 2018

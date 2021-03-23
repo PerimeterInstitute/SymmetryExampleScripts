@@ -1,0 +1,5 @@
+module load intel/mpi
+which mpicc
+mpicc -fopenmp -Wall -c hello-hybrid.c
+mpicc -fopenmp -Wall -o hello-hybrid hello-hybrid.o
+sbatch hello-hybrid.sbatch

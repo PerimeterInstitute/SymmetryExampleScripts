@@ -1,0 +1,3 @@
+cc -fopenmp -Wall -c hello-openmp.c
+cc -fopenmp -Wall -o hello-openmp hello-openmp.o
+sbatch hello-openmp.sbatch

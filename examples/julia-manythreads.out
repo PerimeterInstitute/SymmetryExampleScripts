@@ -1,0 +1,15 @@
++ export PATH=/cm/shared/apps/slurm/17.11.8/sbin:/cm/shared/apps/slurm/17.11.8/bin:/nfs/galaxy/unixhome/eschnetter/.cargo/bin:/nfs/galaxy/unixhome/eschnetter/.local/bin:/nfs/galaxy/unixhome/eschnetter/bin:/cm/shared/apps/torque/6.1.1/bin:/cm/shared/apps/torque/6.1.1/sbin:/nfs/galaxy/unixhome/eschnetter/bin:/nfs/galaxy/unixhome/eschnetter/src/spack-tmux/bin:/nfs/galaxy/unixhome/eschnetter/src/spack-tmux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lpp/mmfs/bin:/sbin:/usr/sbin:/cm/local/apps/environment-modules/4.0.0/bin:/cm/shared/apps/Wolfram/Mathematica/11.0/bin:/opt/dell/srvadmin/bin:/cm/shared/apps/julia/julia-1.0.2/bin:/cm/shared/apps/julia/julia-1.0.2/bin
++ PATH=/cm/shared/apps/slurm/17.11.8/sbin:/cm/shared/apps/slurm/17.11.8/bin:/nfs/galaxy/unixhome/eschnetter/.cargo/bin:/nfs/galaxy/unixhome/eschnetter/.local/bin:/nfs/galaxy/unixhome/eschnetter/bin:/cm/shared/apps/torque/6.1.1/bin:/cm/shared/apps/torque/6.1.1/sbin:/nfs/galaxy/unixhome/eschnetter/bin:/nfs/galaxy/unixhome/eschnetter/src/spack-tmux/bin:/nfs/galaxy/unixhome/eschnetter/src/spack-tmux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lpp/mmfs/bin:/sbin:/usr/sbin:/cm/local/apps/environment-modules/4.0.0/bin:/cm/shared/apps/Wolfram/Mathematica/11.0/bin:/opt/dell/srvadmin/bin:/cm/shared/apps/julia/julia-1.0.2/bin:/cm/shared/apps/julia/julia-1.0.2/bin
++ pwd
+/nfs/galaxy/unixhome/eschnetter/src/c
++ echo SLURM_JOB_ID=2039
+SLURM_JOB_ID=2039
++ date
+Mon Nov 12 20:06:20 EST 2018
++ env OMP_NUM_THREADS=40 julia julia-manythreads.jl
+Multiplying two large matrices...
+Run time in seconds: 14.765209024
+Theoretical run time in seconds: 5.208333333333333
+Done.
++ date
+Mon Nov 12 20:06:43 EST 2018
