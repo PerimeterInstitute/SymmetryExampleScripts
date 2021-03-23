@@ -1,7 +1,8 @@
 #!/bin/bash
+#SBATCH --partition=debugq
 #SBATCH --job-name=mathematica-manytasks
 #SBATCH --nodes=1
-#SBATCH --output=/home/eschnetter/src/c/mathematica-manytasks.out
+#SBATCH --output=mathematica-manytasks.out
 #SBATCH --time=0:10:00
 
 set -euxo pipefail
