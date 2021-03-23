@@ -103,7 +103,7 @@ To run the example:
 sbatch mathematica-manythreads.sbatch
 ```
 
-### Mathematica -- many small tasks
+### Mathematica -- one node, many small tasks
 
 This example is for when you have a number of small tasks to perform
 -- for example, you have 100 data files and you need to run a
@@ -113,6 +113,20 @@ mathematica script on each one.
 * [mathematica-onetask.m -- Mathematica script run on each data item](examples/mathematica-onetask.m)
 * [mathematica-manytasks.out -- example output](examples/mathematica-manytasks.out)
 
+### Julia -- on one node
+
+Like the Mathematica example, this uses built-in parallelism in the
+linear algebra libraries that Julia uses.
+
+* [julia-manythreads.sbatch -- Slurm batch script](examples/julia-manythreads.sbatch)
+* [julia-manythreads.m -- C source code](examples/julia-manythreads.m)
+* [julia-manythreads.out -- example output](examples/julia-manythreads.out)
+
+To run the example:
+
+```
+sbatch julia-manythreads.sbatch
+```
 
 ### Hybrid OpenMP + MPI
 
